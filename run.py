@@ -36,9 +36,12 @@ def game_set_up():
             print("your choice is wrong! Pick a number between 1, 2 or 3")
         else:
             break
-        
+    board = drawing_game(game_size)
+    return board  
+
+
 def drawing_game(game_size):
-    board1 = [
+    board5 = [
     [' ', ' ', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' '],
@@ -46,7 +49,7 @@ def drawing_game(game_size):
     [' ', ' ', ' ', ' ', ' '],
     ]
 
-    board5 = [
+    board10 = [
         
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -82,6 +85,14 @@ def drawing_game(game_size):
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     ]
+
+    board = [board5, board10, board20]
+    for i in range(len(board)):
+        if int(game_size) == i :
+            print(board[i-1])
+        
+
+
 
 def main():
     game_set_up()
