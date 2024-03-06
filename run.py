@@ -16,8 +16,25 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('battleship data')
 
-computer_generated_positions = SHEET.worksheet('Computer')
+computer_generated_positions = SHEET.worksheet('computer')
+player1_data = SHEET.worksheet('player1')
+player2_data = SHEET.worksheet('player2')
 
 ships_positions = computer_generated_positions.get_all_values()
+player1_d = player1_data.get_all_values()
+player2_d = player2_data.get_all_values()
 
-print(ships_positions)
+def game_set_up():
+    print("setting up the game ... \n")
+    print("Please enter 1 for 5X5   game size \n")
+    print("       enter 2 for 10X10 game size \n")
+    print("       enter 3 for 20X20 game size \n")
+
+    game_size = input("Enter your choice here:")
+    
+def drawing_game():
+
+def main():
+    game_set_up()
+
+main()
