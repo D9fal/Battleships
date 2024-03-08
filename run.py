@@ -134,7 +134,7 @@ def drawing_board(game_size):
             'H': 7,
             'I': 8,
             'J': 9,
-            'k': 10,
+            'K': 10,
             'L': 11,
             'M': 12,
             'N': 13,
@@ -152,11 +152,11 @@ def drawing_board(game_size):
     for i in range(len(board)+1):       
         if int(game_size) == i :             
             game_board = board[i-1]
-            game_row_let_nber = row_letters_number[i-1]
-    return (game_board, game_row_let_nber)    
+            game_col_let_nber = row_letters_number[i-1]
+    return (game_board, game_col_let_nber)    
 
 
-def number_player(game_size, game_row_conv, game_board):
+def battleships_def_pos(game_size, game_col_conv, game_board):
     """ 
         the function will be used to determine if the battleship positions is chosing by a computer of the second players.
         If only one player, he would have to play with the computer. 
@@ -173,39 +173,53 @@ def number_player(game_size, game_row_conv, game_board):
             break
 
     if nber_player == "1":
-        player_place_battleship(game_size, game_row_conv, game_board)
+        user_place_battleship(game_size, game_col_conv, game_board)
     elif nber_player == "2":
-        computer_place_battleship(game_size, game_row_conv, game_board)
+        computer_place_battleship(game_size, game_col_conv, game_board)
     else:
         pass
 
-def player_place_battleship(game_size, game_row_conv, game_board):
+def user_place_battleship(game_size, game_col_conv, game_board):
     """ 
     """
     if game_size == "1":
         nber_ships = 5 
+        entries_col = "column (A to E for 5x5):"
+        entries_row = "row (1 to 5):"
     elif  game_size == "2":
         nber_ships = 10
+        entries_col = "column (A to E for 10x10):"
+        entries_row = "row (1 to 10):"
     elif game_size == "3":
-        nber_ships = 10
+        nber_ships = 20
+        entries_col = "column (A to T for 20x20):"
+        entries_row = "row (1 to 20):"
     else: 
         pass
-
+    row_number_list = []
+    column_number_list = []
     for n in range(nber_ships):
 
-        print("Where do you want ship ", n + 1, "?")
-        column = input("column (A to E for 5x5) - column (A to J for 10x10) - column(A to T for 20x20):")
-        row = input("row (1 to 5) - row (1 to 10) - row (1 to 20):")        
-        column_number = game_row_conv[column]        
-        row_number = int(row) - 1
-        game_board[row_number][column_number] = 'X'   
+        while True:
+            print("Where do you want ship ", n + 1, "?")
+            column = input(f"{entries_col}")
+            row = input(f"{entries_row}") 
+            if validate_battleships_positions_letter(nber_ships,column) and validate_battleships_positions_number(nber_ships,row):
+                print("valid entries")                                   
+                column_number = game_col_conv[column]        
+                row_number = int(row) - 1
+                game_board[row_number][column_number] = 'X'  
+                row_number_list.append(row_number)
+                column_number_list.append(column)
+                break
+
+    record_ships_pos(row_number_list,column_number_list) 
+
     for row in game_board:
         print(row)    
 
 
-
-
-def computer_place_battleship(game_size, game_row_conv, game_board):
+def computer_place_battleship(game_size, game_col_conv, game_board):
     """
     """
 
@@ -221,13 +235,52 @@ def computer_place_battleship(game_size, game_row_conv, game_board):
     for n in range(nber_ships): 
          
         game_board[random.randint(0,nber_ships)-1][random.randint(0,nber_ships)-1] = "X"
-    
+        record_ships_pos(random.randint(0,nber_ships)-1,random.randint(0,nber_ships)-1) 
     for row in game_board:
         print(row)    
 
 
+def validate_battleships_positions_letter(nber_ships,column):
+    if nber_ships == 5:
+        letter_span = "ABCDE"
+    elif nber_ships == 10:
+        letter_span = "ABCDEFGHIJ"
+    else:
+        letter_span = "ABCDEFGHIJKLMNOPQRST"
+
+    try:
+        if letter_span.find(column) == -1 :
+            raise ValueError(f"{column} is not a letter between{letter_span}")
+
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+        return False
+
+    return True
+
+def validate_battleships_positions_number(nber_ships,row):
+   
+    try:
+        if  int(row) > int(nber_ships):
+            raise ValueError(f"{row} must be a number between 1 and {nber_ships}")
+
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+        return False        
+   
+    return True
+
+def record_ships_pos(number, letter):
+    data = []
+    for i in range(len(number)):
+        data.append(letter[i])
+        data.append(number[i])
+    battleships_positions.append_row(data)
+    
+
+
 def main():
-    game_board, game_row_conv, game_size = game_set_up()
-    number_player(game_size, game_row_conv,game_board)    
+    game_board, game_col_conv, game_size = game_set_up()
+    battleships_def_pos(game_size, game_col_conv,game_board)    
     
 main()
