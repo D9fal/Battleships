@@ -305,11 +305,12 @@ def guessing_play(game_size):
         entries_col = "column (A to J):"
         entries_row = "row (1 to 10):"
         total_guesses = 10
-        else:
-            total_guesses = 20 
-            entries_col = "column (A to T):"
-            entries_row = "row (1 to 20):"
-    
+    elif int(game_size) == 3:
+        total_guesses = 20 
+        entries_col = "column (A to T):"
+        entries_row = "row (1 to 20):"
+    else:
+        pass
     nber_guess = 0 
     while nber_guess < total_guesses:
 
