@@ -207,11 +207,15 @@ def user_place_battleship(game_size, game_col_conv, game_board):
             if validate_battleships_positions_letter(nber_ships,column) and validate_battleships_positions_number(nber_ships,row):
                 print("valid entries")                                   
                 column_number = game_col_conv[column]        
-                row_number = int(row) - 1
+                row_number = int(row) - 1                                
                 game_board[row_number][column_number] = 'X'  
                 row_number_list.append(row_number)
                 column_number_list.append(column)
                 break
+
+                
+                    
+                
 
     record_ships_pos(row_number_list,column_number_list) 
 
@@ -231,13 +235,24 @@ def computer_place_battleship(game_size, game_col_conv, game_board):
         nber_ships = 20
     else: 
         pass
-    
+    column_number_list = []
+    row_number_list = []
     for n in range(nber_ships): 
-         
-        game_board[random.randint(0,nber_ships)-1][random.randint(0,nber_ships)-1] = "X"
-        record_ships_pos(random.randint(0,nber_ships)-1,random.randint(0,nber_ships)-1) 
+        x_coord = random.randint(0,nber_ships)-1 
+        y_coord = random.randint(0,nber_ships)-1
+        game_board[x_coord][y_coord] = "X"
+        for key,value in  game_col_conv.items():
+            if  x_coord == value:
+                column = key      
+                column_number_list.append(column) 
+        row_number_list.append(y_coord)
+
+    record_ships_pos(row_number_list, column_number_list ) 
+
+
     for row in game_board:
-        print(row)    
+        print(row)  
+
 
 
 def validate_battleships_positions_letter(nber_ships,column):
@@ -270,17 +285,31 @@ def validate_battleships_positions_number(nber_ships,row):
    
     return True
 
+def Already_used_position():
+    print("there is a battleship already there")
+
+
 def record_ships_pos(number, letter):
     data = []
     for i in range(len(number)):
         data.append(letter[i])
-        data.append(number[i])
+        data.append(number[i])    
     battleships_positions.append_row(data)
     
+def guessing_play(game_size):
+    if int(game_size) == 1:
+        total_guesses = 5  
+    elif int(game_size) == 2:
+        total_guesses = 10
+        else:
+            total_guesses = 20 
+    nber_guess = 0 
+    while nber_guess < total_guesses:
 
 
 def main():
     game_board, game_col_conv, game_size = game_set_up()
     battleships_def_pos(game_size, game_col_conv,game_board)    
+    guessing_play(game_size)
     
 main()
