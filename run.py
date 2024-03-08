@@ -298,13 +298,23 @@ def record_ships_pos(number, letter):
     
 def guessing_play(game_size):
     if int(game_size) == 1:
+        entries_col = "column (A to E):"
+        entries_row = "row (1 to 5):"
         total_guesses = 5  
     elif int(game_size) == 2:
+        entries_col = "column (A to J):"
+        entries_row = "row (1 to 10):"
         total_guesses = 10
         else:
             total_guesses = 20 
+            entries_col = "column (A to T):"
+            entries_row = "row (1 to 20):"
+    
     nber_guess = 0 
     while nber_guess < total_guesses:
+
+        column = input(f"{entries_col}")
+        row = input(f"{entries_row}")
 
 
 def main():
