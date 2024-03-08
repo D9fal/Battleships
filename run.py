@@ -2,6 +2,7 @@
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
+import random
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -206,7 +207,26 @@ def player_place_battleship(game_size, game_row_conv, game_board):
 
 
 def computer_place_battleship(game_size, game_row_conv, game_board):
-    print("computer1")
+    """
+    """
+
+    if game_size == "1":
+        nber_ships = 5 
+    elif  game_size == "2":
+        nber_ships = 10
+    elif game_size == "3":
+        nber_ships = 20
+    else: 
+        pass
+    
+    for n in range(nber_ships): 
+         
+        game_board[random.randint(0,nber_ships)-1][random.randint(0,nber_ships)-1] = "X"
+    
+    for row in game_board:
+        print(row)    
+
+
 def main():
     game_board, game_row_conv, game_size = game_set_up()
     number_player(game_size, game_row_conv,game_board)    
