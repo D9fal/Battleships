@@ -17,13 +17,12 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('battleship data')
 
-computer_generated_positions = SHEET.worksheet('computer')
-player1_data = SHEET.worksheet('player1')
-player2_data = SHEET.worksheet('player2')
+battleships_positions = SHEET.worksheet('battleships_pos')
+player_data = SHEET.worksheet('player')
 
-ships_positions = computer_generated_positions.get_all_values()
-player1_d = player1_data.get_all_values()
-player2_d = player2_data.get_all_values()
+ships_positions = battleships_positions.get_all_values()
+player_d = player_data.get_all_values()
+
 
 def game_set_up():
     """ 
