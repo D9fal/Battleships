@@ -281,7 +281,10 @@ def Already_used_position():
 
 def record_ships_pos(number, letter):
     data = []
-    
+    print(number)
+    print(letter)
+    print(len(number))
+
     for i in range(len(number)):        
         data.append(letter[i])
         data.append(number[i])    
@@ -307,10 +310,13 @@ def guessing_play(game_size):
     else:
         pass
     nber_guess = 0 
-    while nber_guess < total_guesses:
+    Print("Are you ready to start guessing the Ships position?:")
+    start_ok = input(" type Yes to start")
+    if start_ok.upper() == YES :
 
-        column = input(f"{entries_col}")
-        row = input(f"{entries_row}")
+        while nber_guess < total_guesses:
+            column = input(f"{entries_col}")
+            row = input(f"{entries_row}")
 
 
 
