@@ -155,7 +155,6 @@ def drawing_board(game_size):
             game_col_let_nber = row_letters_number[i-1]
     return (game_board, game_col_let_nber)    
 
-
 def battleships_def_pos(game_size, game_col_conv, game_board):
     """ 
         the function will be used to determine if the battleship positions is chosing by a computer of the second players.
@@ -199,7 +198,6 @@ def user_place_battleship(game_size, game_col_conv, game_board):
     row_number_list = []
     column_number_list = []
     for n in range(nber_ships):
-
         while True:
             print("Where do you want ship ", n + 1, "?")
             column = input(f"{entries_col}")
@@ -211,17 +209,12 @@ def user_place_battleship(game_size, game_col_conv, game_board):
                 game_board[row_number][column_number] = 'X'  
                 row_number_list.append(row_number)
                 column_number_list.append(column)
-                break
-
-                
-                    
-                
-
+                break         
+                                
     record_ships_pos(row_number_list,column_number_list) 
 
     for row in game_board:
         print(row)    
-
 
 def computer_place_battleship(game_size, game_col_conv, game_board):
     """
@@ -252,8 +245,6 @@ def computer_place_battleship(game_size, game_col_conv, game_board):
 
     for row in game_board:
         print(row)  
-
-
 
 def validate_battleships_positions_letter(nber_ships,column):
     if nber_ships == 5:
@@ -288,15 +279,19 @@ def validate_battleships_positions_number(nber_ships,row):
 def Already_used_position():
     print("there is a battleship already there")
 
-
 def record_ships_pos(number, letter):
     data = []
-    for i in range(len(number)):
+    
+    for i in range(len(number)):        
         data.append(letter[i])
         data.append(number[i])    
     battleships_positions.append_row(data)
     
 def guessing_play(game_size):
+
+    """
+
+    """
     if int(game_size) == 1:
         entries_col = "column (A to E):"
         entries_row = "row (1 to 5):"
@@ -316,6 +311,7 @@ def guessing_play(game_size):
 
         column = input(f"{entries_col}")
         row = input(f"{entries_row}")
+
 
 
 def main():
