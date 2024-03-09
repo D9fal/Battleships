@@ -231,8 +231,8 @@ def computer_place_battleship(game_size, game_col_conv, game_board):
     column_number_list = []
     row_number_list = []
     for n in range(nber_ships): 
-        x_coord = random.randint(0,nber_ships)-1 
-        y_coord = random.randint(0,nber_ships)-1
+        x_coord = random.randint(0, nber_ships)-1
+        y_coord = random.randint(0, nber_ships)-1
         game_board[x_coord][y_coord] = "X"
         for key,value in  game_col_conv.items():
             if  x_coord == value:
@@ -310,9 +310,9 @@ def guessing_play(game_size):
     else:
         pass
     nber_guess = 0 
-    Print("Are you ready to start guessing the Ships position?:")
-    start_ok = input(" type Yes to start")
-    if start_ok.upper() == YES :
+    print("Are you ready to start guessing the Ships position?:")
+    start_ok = input(" type Yes to start : ")
+    if start_ok.upper() == "YES"
 
         while nber_guess < total_guesses:
             column = input(f"{entries_col}")
