@@ -46,7 +46,6 @@ def game_set_up():
 
     return (board, row_conv, game_size)  
 
-
 def drawing_board(game_size):
     """ 
         the board is a list of list. where ' ' is an empty place or water and 'X' is a battleship.
@@ -366,7 +365,6 @@ def clear_game_board(nber_ships,game_board):
     for k in game_board:
         print(k)
     return game_board
-
 
 def main():
     game_board, game_col_conv, game_size = game_set_up()
