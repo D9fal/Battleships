@@ -342,27 +342,25 @@ def guessing_play(game_size,game_col_conv,game_board, battleships_positions):
                 print("valid entries")  
                 column_number = int(game_col_conv[column])
                 row_number = int(row) - 1 
-            
-            if display_players_entries(nber_ships,battleships_positions,column,new_board,row_number,column_number):
-                nber_guess = nber_guess +1
-                print("Wrong Guess!")
-                new_board[row_number][column_number] = "o"    
 
-
-                               
+                for i in range(nber_ships):
+                    if not ((column == battleships_positions[i][0]) and (int(row_number) ==  int(battleships_positions[i][1]))):
+                        continue         
                         
-                    
+                    else: 
+                        print("Good Guess!")
+                        new_board[row_number][column_number] = "X"  
+                        nber_guess = nber_guess +1  
+                        break                        
+                           
+
+
+        #    print("Wrong Guess!")
+        #    new_board[row_number][column_number] = "o" 
+        
                         
 
         print("END od The Game!")   
-
-
-def display_players_entries(nber_ships,battleships_positions,column,new_board,row_number,column_number):
-    for i in range(nber_ships):                              
-        if (column == battleships_positions[i][0]) and (int(row_number) ==  int(battleships_positions[i][1])):
-            print("Good Guess!")
-            new_board[row_number][column_number] = "X"  
-            return True
        
 
 
