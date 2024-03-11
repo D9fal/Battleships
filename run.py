@@ -235,15 +235,18 @@ def computer_place_battleship(game_size, game_col_conv, game_board):
         pass
     column_number_list = []
     row_number_list = []
-    for n in range(nber_ships):        
-        x_coord = random.randint(1, nber_ships)-1
-        y_coord = random.randint(1, nber_ships)-1        
-        game_board[x_coord][y_coord] = "X"
-        for key,value in  game_col_conv.items():
-            if  y_coord == value:
-                column = key                
-                column_number_list.append(column) 
-        row_number_list.append(x_coord)
+    for n in range(nber_ships):  
+        while True:            
+            x_coord = random.randint(1, nber_ships)-1        
+            y_coord = random.randint(1, nber_ships)-1 
+            if already_used_position(game_board, x_coord,y_coord):
+                game_board[x_coord][y_coord] = "X"
+                for key,value in  game_col_conv.items():
+                    if  y_coord == value:
+                        column = key                          
+                        column_number_list.append(column) 
+                row_number_list.append(x_coord)
+                break
 
     data_list_of_list = record_ships_pos(row_number_list, column_number_list ) 
 
@@ -293,11 +296,11 @@ def already_used_position(game_board, row_number,column_number):
    
     return True
 
-
 def player_enter_battleships_position():
     print("position")
 
 def record_ships_pos(number, letter):
+    
     data = []
     data_list_of_list = []
     for i in range(len(number)):    
@@ -350,7 +353,8 @@ def guessing_play(game_size,game_col_conv,game_board, battleships_positions):
                         new_board[row_number][column_number] = "X"  
                         nber_guess = nber_guess +1  
                         break                 
-                           
+                for r in new_board:
+                    print(r)           
         #    print("Wrong Guess!")
         #    new_board[row_number][column_number] = "o" 
 
