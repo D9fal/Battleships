@@ -276,8 +276,11 @@ def validate_battleships_positions_number(nber_ships,row):
    
     return True
 
-def Already_used_position():
+def already_used_position():
     print("there is a battleship already there")
+
+def player_enter_battleships_position():
+    print("position")
 
 def record_ships_pos(number, letter):
     data = []
@@ -298,13 +301,13 @@ def guessing_play(game_size):
     if int(game_size) == 1:
         entries_col = "colum ( Enter a letter between A to E):"
         entries_row = "row (1 to 5):"
-        total_guesses = 5  
+        nber_ships = 5  
     elif int(game_size) == 2:
         entries_col = "column ( Enter a letter between A to J):"
         entries_row = "row (1 to 10):"
-        total_guesses = 10
+        nber_ships = 10
     elif int(game_size) == 3:
-        total_guesses = 20 
+        nber_ships = 20 
         entries_col = "column ( Enter a letter between A to T):"
         entries_row = "row (1 to 20):"
     else:
@@ -313,7 +316,7 @@ def guessing_play(game_size):
     print("Are you ready to start guessing the Ships position?:")
     start_ok = input(" type Yes to start : ")
     if start_ok.upper() == "YES":
-        while nber_guess < total_guesses:
+        while nber_guess < nber_ships:
             print(f"Enter your Guess number {nber_guess} here: ")
             column = input(f"{entries_col}")
             row = input(f"{entries_row}")
