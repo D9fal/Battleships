@@ -200,7 +200,7 @@ def user_place_battleship(game_size, game_col_conv, game_board):
     for n in range(nber_ships):
         while True:
             print("Where do you want ship ", n + 1, "?")
-            column = input(f"{entries_col}")
+            column = input(f"{entries_col}").upper()
             row = input(f"{entries_row}") 
             if validate_battleships_positions_letter(nber_ships,column) and validate_battleships_positions_number(nber_ships,row):
                 print("valid entries")                                   
@@ -231,14 +231,17 @@ def computer_place_battleship(game_size, game_col_conv, game_board):
     column_number_list = []
     row_number_list = []
     for n in range(nber_ships): 
-        x_coord = random.randint(0, nber_ships)-1
-        y_coord = random.randint(0, nber_ships)-1
+        print(f"computer {n} in range {nber_ships}" )
+        x_coord = random.randint(1, nber_ships)-1
+        y_coord = random.randint(1, nber_ships)-1
+        print(f"x_coord = {x_coord}   y_coord = {y_coord}")
         game_board[x_coord][y_coord] = "X"
         for key,value in  game_col_conv.items():
-            if  x_coord == value:
-                column = key      
+            if  y_coord == value:
+                column = key   
+                print(f" the real letter is {column}")   
                 column_number_list.append(column) 
-        row_number_list.append(y_coord)
+        row_number_list.append(x_coord)
 
     record_ships_pos(row_number_list, column_number_list ) 
 
@@ -286,20 +289,21 @@ def record_ships_pos(number, letter):
     data = []
     print(number)
     print(letter)
-    print(len(number))
+    print(len(letter))
 
-    for i in range(len(number)):        
+    for i in range(len(number)):    
+        print(i)    
         data.append(letter[i])
         data.append(number[i])    
     battleships_positions.append_row(data)
     
-def guessing_play(game_size):
+def guessing_play(game_size,game_col_conv,game_board):
 
     """
 
     """
     if int(game_size) == 1:
-        entries_col = "colum ( Enter a letter between A to E):"
+        entries_col = "column ( Enter a letter between A to E):"
         entries_row = "row (1 to 5):"
         nber_ships = 5  
     elif int(game_size) == 2:
@@ -312,12 +316,12 @@ def guessing_play(game_size):
         entries_row = "row (1 to 20):"
     else:
         pass
-    nber_guess = 0 
+    nber_guess = 1 
     print("Are you ready to start guessing the Ships position?:")
     start_ok = input(" type Yes to start : ")
     if start_ok.upper() == "YES":
-        while nber_guess < nber_ships:
-            print(f"Enter your Guess number {nber_guess} here: ")
+        while nber_guess <= nber_ships:
+            print(f"Find the battleship number {nber_guess} here: ")
             column = input(f"{entries_col}")
             row = input(f"{entries_row}")
 
@@ -325,7 +329,7 @@ def guessing_play(game_size):
                 print("valid entries")  
                 column_number = game_col_conv[column]        
                 row_number = int(row) - 1   
-                if board[row_number][column_number] == 'X':
+                if game_board[row_number][column_number] == 'X':
                     print("Good Guess!")
                     nber_guess = nber_guess + 1
                 else:
@@ -339,6 +343,6 @@ def guessing_play(game_size):
 def main():
     game_board, game_col_conv, game_size = game_set_up()
     battleships_def_pos(game_size, game_col_conv,game_board)    
-    guessing_play(game_size)
+    guessing_play(game_size,game_col_conv,game_board)
     
 main()
