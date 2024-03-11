@@ -205,11 +205,12 @@ def user_place_battleship(game_size, game_col_conv, game_board):
             if validate_battleships_positions_letter(nber_ships,column) and validate_battleships_positions_number(nber_ships,row):
                 print("valid entries")                                   
                 column_number = game_col_conv[column]        
-                row_number = int(row) - 1                                
-                game_board[row_number][column_number] = 'X'  
-                row_number_list.append(row_number)
-                column_number_list.append(column)
-                break         
+                row_number = int(row) - 1  
+                if already_used_position(game_board,row_number,column_number):                              
+                    game_board[row_number][column_number] = 'X'  
+                    row_number_list.append(row_number)
+                    column_number_list.append(column)                    
+                    break         
                                 
     record_ships_pos(row_number_list,column_number_list) 
 
@@ -279,8 +280,17 @@ def validate_battleships_positions_number(nber_ships,row):
    
     return True
 
-def already_used_position():
-    print("there is a battleship already there")
+def already_used_position(game_board, row_number,column_number):
+    try:
+        if  game_board[row_number][column_number] == 'X' :
+            raise ValueError(f" there is a battleship already in {column_number} {row_number}")
+
+    except ValueError as e:
+        print(f" duplicate data: {e}, please try again.\n")
+        return False        
+   
+    return True
+
 
 def player_enter_battleships_position():
     print("position")
