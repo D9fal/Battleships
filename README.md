@@ -22,4 +22,17 @@ The live link can be found here - [Fal-Battleship](https://fal-battleships-25fda
 - " End of game" message is then printed to signify the to the player that all the hidden battleships are found.
 
 ## Site Owner Goals
+- To provide the user with an inactive game that he/she can set up to self chanlenge.
+- To present the user with an app that functions well and is easy to use. 
+- To entice the user to return to the game by allowing his to pick a more complicated setup if needed.
+
+## User Stories
+
+- ### As a user I want to:
+  - Understand what battleships is, a guessing game.
+  - by marking the false guesses "0", the user can be sure to have smaller pool of position to choose from at each step. 
+  - The user can see how many false guesses he has by looking at the board.
+  - Enjoy reaching "end of the game" message.
+
+
 
