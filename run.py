@@ -266,7 +266,7 @@ def validate_battleships_positions_letter(nber_ships,column):
 
     try:
         if letter_span.find(column) == -1 :
-            raise ValueError(f"{column} is not a letter between{letter_span}")
+            raise ValueError(f"{column} is not a letter between  {letter_span}")
 
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
