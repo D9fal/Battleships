@@ -38,7 +38,7 @@ def game_set_up():
 
     while True:
         game_size = input("Enter your choice here:")
-        if game_size not in "123":
+        if game_size not in ["1","2","3"]:
             print("your choice is wrong! Pick a number between 1, 2 or 3")
         else:
             break
@@ -56,7 +56,7 @@ def drawing_board(game_size):
     """ 
 
     board5 = [
-
+        
     [' ', ' ', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' '],
@@ -166,7 +166,7 @@ def battleships_def_pos(game_size, game_col_conv, game_board):
 
     while True:
         nber_player = input("Enter your choice here:")
-        if nber_player not in "12":
+        if nber_player not in ["1","2"]:
             print("your choice is wrong! Pick a number between 1 et 2")
         else:
             break
@@ -215,7 +215,7 @@ def user_place_battleship(game_size, game_col_conv, game_board):
                     break         
                                 
     data_list_of_list = record_ships_pos(row_number_list,column_number_list) 
-    print(data_list_of_list)
+    
 
     for row in game_board:
         print(row)    
@@ -297,8 +297,15 @@ def already_used_position(game_board, row_number,column_number):
    
     return True
 
-def player_enter_battleships_position():
-    print("position")
+def validate_willing_to_play():
+    start_ok = input(" type Yes to start : ")
+    try:
+        if not(start_ok.upper() == "YES"):
+            raise ValueError("answer by 'Yes' if willing to play")
+    except ValueError as e:
+        print(f"Invalid entries: {e}, please try again.\n")
+        return False
+    return True
 
 def record_ships_pos(number, letter):
     
@@ -332,10 +339,10 @@ def guessing_play(game_size,game_col_conv,game_board, battleships_positions):
     else:
         pass
     nber_guess = 1 
-    print("Are you ready to start guessing the Ships position?:")
-    start_ok = input(" type Yes to start : ")
+    print("Are you ready to start guessing the Ships position?:")   
 
-    if (start_ok.upper() == "YES"):                        
+    while(1):
+     if validate_willing_to_play():                        
         print("\n"*20)
         print("Your starting Board")
         print("Good Luck")
@@ -363,8 +370,12 @@ def guessing_play(game_size,game_col_conv,game_board, battleships_positions):
                         break                 
                 for r in new_board:
                     print(r) 
-        print("You have Won!")
-        print("END od The Game!")
+                if (nber_guess == nber_ships):
+                    print("You have Won!")
+                    print("END od The Game!")
+                
+        break
+        
 
 def clear_game_board(nber_ships,game_board):
     for i in range(nber_ships):
