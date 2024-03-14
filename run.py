@@ -206,7 +206,7 @@ def user_place_battleship(game_size, game_col_conv, game_board):
             print("Where do you want ship ", n + 1, "?")
             column = input(f"{entries_col}").upper()
             row = input(f"{entries_row}") 
-            if validate_battleships_positions_letter(nber_ships,column) and validate_battleships_positions_number(nber_ships,row):
+            if validate_battleships_positions_letter(nber_ships,column) and validate_battleships_positions_number(nber_ships,row) and validate_battleships_positions_number_0(nber_ships,row):
                 print("valid entries")                                   
                 column_number = game_col_conv[column]        
                 row_number = int(row) -1
@@ -278,10 +278,22 @@ def validate_battleships_positions_letter(nber_ships,column):
 
     return True
 
+def validate_battleships_positions_number_0(nber_ships,row):
+   
+    try:
+        if  (int(row) < 1):
+            raise ValueError(f"{row} must be a number between 1 and {nber_ships}")
+
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+        return False        
+   
+    return True
+
 def validate_battleships_positions_number(nber_ships,row):
    
     try:
-        if  (int(row) > int(nber_ships)) and (int(row) < 1):
+        if  (int(row) > int(nber_ships)):
             raise ValueError(f"{row} must be a number between 1 and {nber_ships}")
 
     except ValueError as e:
