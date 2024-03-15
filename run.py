@@ -189,14 +189,20 @@ def user_place_battleship(game_size, game_col_conv, game_board):
         nber_ships = 5 
         entries_col = "column (A to E for 5x5):"
         entries_row = "row (1 to 5):"
+        cols_index = ['A','B','C','D','E']
+        rs_index  = ['1','2','3','4','5']
     elif  game_size == "2":
         nber_ships = 10
         entries_col = "column (A to E for 10x10):"
         entries_row = "row (1 to 10):"
+        cols_index = ['A','B','C','D','E','F','G','H','I','J']
+        rs_index  = ['1','2','3','4','5','6','7','8','9','10']
     elif game_size == "3":
         nber_ships = 20
         entries_col = "column (A to T for 20x20):"
         entries_row = "row (1 to 20):"
+        cols_index = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T']
+        rs_index  = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']
     else: 
         pass
     row_number_list = []
@@ -218,12 +224,9 @@ def user_place_battleship(game_size, game_col_conv, game_board):
                                 
     data_list_of_list = record_ships_pos(row_number_list,column_number_list) 
     
-    df = pd.DataFrame(game_board, columns=['A','B','C','D','E'])
-    df.index = ['1','2','3','4','5']
-    print(df)
-    #for row in game_board:
-    #    print(row)    
-
+    df = pd.DataFrame(game_board, columns=cols_index)
+    df.index = rs_index
+    print(df)    
     return data_list_of_list
 
 def computer_place_battleship(game_size, game_col_conv, game_board):
@@ -232,9 +235,15 @@ def computer_place_battleship(game_size, game_col_conv, game_board):
 
     if game_size == "1":
         nber_ships = 5 
+        cols_index = ['A','B','C','D','E']
+        rs_index  = ['1','2','3','4','5']
     elif  game_size == "2":
         nber_ships = 10
+        cols_index = ['A','B','C','D','E','F','G','H','I','J']
+        rs_index  = ['1','2','3','4','5','6','7','8','9','10']
     elif game_size == "3":
+        cols_index = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T']
+        rs_index  = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']
         nber_ships = 20
     else: 
         pass
@@ -255,8 +264,9 @@ def computer_place_battleship(game_size, game_col_conv, game_board):
 
     data_list_of_list = record_ships_pos(row_number_list, column_number_list ) 
 
-    for row in game_board:
-        print(row)  
+    df = pd.DataFrame(game_board, columns=cols_index)
+    df.index = rs_index
+    print(df) 
     
     return data_list_of_list
 
