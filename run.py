@@ -89,8 +89,8 @@ def drawing_board(game_size):
             '_', '_', '_', '_', '_', '_', '_', '_'],
         ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
             '_', '_', '_', '_', '_', '_', '_', '_'],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-            ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
+            '_', '_', '_', '_', '_', '_', '_', '_'],
         ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
             '_', '_', '_', '_', '_', '_', '_', '_'],
         ['_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
@@ -255,10 +255,15 @@ def user_place_battleship(game_size, game_col_conv, game_board):
                     break
 
     data_list_of_list = record_ships_pos(row_number_list, column_number_list)
-
+     
     df = pd.DataFrame(game_board, columns=cols_index)
     df.index = rs_index
     print(df)
+    print("\n"*1)
+    print("Legends")    
+    print(" '_' : empty positions")
+    print(" 'X' : positions of the Battleships")    
+    print("\n"*1)
     return data_list_of_list
 
 
@@ -286,7 +291,11 @@ def computer_place_battleship(game_size, game_col_conv, game_board):
     df = pd.DataFrame(game_board, columns=cols_index)
     df.index = rs_index
     print(df)
-
+    print("\n"*1) 
+    print("Legends")   
+    print(" '_' : empty positions")
+    print(" 'X' : positions of the Battleships")    
+    print("\n"*1)
     return data_list_of_list
 
 
@@ -401,9 +410,18 @@ def guessing_play(game_size, game_col_conv, game_board, battleships_positions):
                         new_board[row_number][column_number] = "X"  
                         nber_guess = nber_guess +1  
                         break                 
+                
+                print("\n"*2)
                 df = pd.DataFrame(game_board, columns=cols_index)
                 df.index = rs_index
-                print(df) 
+                print(df)
+                print("\n"*1) 
+                print("Instructions ...")
+                print(" '_' : Position not yet played")
+                print(" 'X' : Hit")
+                print(" 'o' : Miss")
+                print("\n"*1) 
+
                 if (nber_guess == nber_ships + 1):
                     print("You have Won!")
                     print("END od The Game!")
