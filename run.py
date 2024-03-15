@@ -157,7 +157,6 @@ def drawing_board(game_size):
     return (game_board, game_col_let_nber)    
 
 def advanced_settings(game_size):
-    print("advanced settings")
     if game_size == "1":
         nber_ships = 5 
         entries_col = "column (A to E for 5x5):"
