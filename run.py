@@ -354,14 +354,20 @@ def guessing_play(game_size,game_col_conv,game_board, battleships_positions):
         entries_col = "column ( Enter a letter between A to E):"
         entries_row = "row (1 to 5):"
         nber_ships = 5  
+        cols_index = ['A','B','C','D','E']
+        rs_index  = ['1','2','3','4','5']
     elif int(game_size) == 2:
         entries_col = "column ( Enter a letter between A to J):"
         entries_row = "row (1 to 10):"
         nber_ships = 10
+        cols_index = ['A','B','C','D','E','F','G','H','I','J']
+        rs_index  = ['1','2','3','4','5','6','7','8','9','10']
     elif int(game_size) == 3:
         nber_ships = 20 
         entries_col = "column ( Enter a letter between A to T):"
         entries_row = "row (1 to 20):"
+        cols_index = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T']
+        rs_index  = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']
     else:
         pass
     nber_guess = 1 
@@ -373,7 +379,7 @@ def guessing_play(game_size,game_col_conv,game_board, battleships_positions):
         print("Your starting Board")
         print("Good Luck")
         print("\n"*2)
-        new_board = clear_game_board(nber_ships,game_board)
+        new_board = clear_game_board(nber_ships,game_board,cols_index,rs_index)
         print("\n"*5)
         while nber_guess <= nber_ships:
             print(f"Find the battleship number {nber_guess} here: ")
@@ -394,8 +400,9 @@ def guessing_play(game_size,game_col_conv,game_board, battleships_positions):
                         new_board[row_number][column_number] = "X"  
                         nber_guess = nber_guess +1  
                         break                 
-                for r in new_board:
-                    print(r) 
+                    df = pd.DataFrame(game_board, columns=cols_index)
+                    df.index = rs_index
+                    print(df) 
                 if (nber_guess == nber_ships):
                     print("You have Won!")
                     print("END od The Game!")
@@ -403,14 +410,15 @@ def guessing_play(game_size,game_col_conv,game_board, battleships_positions):
         break
         
 
-def clear_game_board(nber_ships,game_board):
+def clear_game_board(nber_ships,game_board,cols_index,rs_index):
     for i in range(nber_ships):
         for j in range(nber_ships):
             if game_board[i][j] == "X":
                 game_board[i][j] = " "
     
-    for k in game_board:
-        print(k)
+    df = pd.DataFrame(game_board, columns=cols_index)
+    df.index = rs_index
+    print(df)
     return game_board
 
 def main():
