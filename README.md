@@ -34,5 +34,12 @@ The live link can be found here - [Fal-Battleship](https://fal-battleships-25fda
   - The user can see how many false guesses he has by looking at the board.
   - Enjoy reaching "end of the game" message.
 
+## Logic Flow
 
+In order to 
 
+## Features 
+
+## Future Features
+
+## Testing
