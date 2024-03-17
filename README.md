@@ -36,9 +36,13 @@ The live link can be found here - [Fal-Battleship](https://fal-battleships-25fda
 
 ## Logic Flow
 
-In order to 
+In order to visualise the flow of steps required in the game, The folowwing flow chart is created using "app.diagrams.net". I used it to plan the project and define the functions required at each stage of the execution.
+
+![Flow Chart](docs/readme_images/flow_chart.png)
+
 
 ## Features 
+
 
 ## Future Features
 
