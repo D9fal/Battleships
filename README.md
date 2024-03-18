@@ -100,10 +100,12 @@ In order to visualise the flow of steps required in the game, The folowwing flow
 
 The python file is been ran through CI Python Linter. No errors was reported. THe image below shows the result:
 
-      <details>
-            <summary>run.py</summary>
+<details>
+      <summary>run.py</summary>
 
-      ![Run](docs/readme_images/python_validator.png)
+![Run](docs/readme_images/python_validator.png)
+
+</details>
 
 ### Game testing
 
