@@ -2,7 +2,7 @@
 
 Fal-Battleship game is a board game played by two peoples or played against a computer. The game board can be of size 5X5, 10X10, 20X20. The user/player must first decide witch game size he/she is interrested in, and then choose whether the battleships positions are decided by the second player or by the computer. Once set up, the user can start the game.  
 
-
+![5X5](docs/readme_images/5X5.png)        ![10X10](docs/readme_images/10X10.png)        ![20X20](docs/readme_images/20X20.png)
 
 
 The live link can be found here - [Fal-Battleship](https://fal-battleships-25fdad662dac.herokuapp.com/)
@@ -113,6 +113,7 @@ The game was tested thoroughly to ensure the following features worked as intend
 - The player choice of settings are exactly what the program displayed.
     * game board size
     * number of battleships
+
 - The player is aware of the number of ships left yet to be found.
 - All the player guesses are displayed on the game board.
     * X = hit
