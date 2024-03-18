@@ -24,9 +24,9 @@ The live link can be found here - [Fal-Battleship](https://fal-battleships-25fda
 
 
 ## Site Owner Goals
-- To provide the user with an inactive game that he/she can set up to self chanlenge.
+- To provide the user with an interactive game that he/she can set up to self chanlenge.
 - To present the user with an app that functions well and is easy to use. 
-- To entice the user to return to the game by allowing his to pick a more complicated setup if needed.
+- To entice the user to return to the game by allowing him to pick a more complicated setup if needed.
 
 ## User Stories
 
@@ -100,10 +100,10 @@ In order to visualise the flow of steps required in the game, The folowwing flow
 
 The python file is been ran through CI Python Linter. No errors was reported. THe image below shows the result:
 
-<details>
-  <summary>run.py</summary>
+      <details>
+            <summary>run.py</summary>
 
-  ![Run](docs/readme_images/python_validator.png)
+      ![Run](docs/readme_images/python_validator.png)
 
 ### Game testing
 
