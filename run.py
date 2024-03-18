@@ -416,7 +416,7 @@ def guessing_play(game_size, game_col_conv, game_board, battleships_positions):
                 df.index = rs_index
                 print(df)
                 print("\n"*1) 
-                print("Instructions ...")
+                print("Legends ...")
                 print(" '_' : Position not yet played")
                 print(" 'X' : Hit")
                 print(" 'o' : Miss")
