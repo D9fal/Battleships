@@ -443,17 +443,19 @@ def clear_game_board(nber_ships,game_board,cols_index,rs_index):
 def play_again():
 
     print("press 'y' to play again or 'n' to end the game" )
-    replay_answer = input("Enter your choice here:")
+    
     while(True):
+        replay_answer = input("Enter your choice here:")
         if replay_answer not in ["y", "n"]:
-            print("Please press 'y' to play again or 'n' to end the game")
+            print("Please press 'y' to play again or 'n' to end the game !")
         else:
             break
     if replay_answer == "y":
         main()
     elif replay_answer == "n":     
+        exit()
+    else:
         pass
-
 def main():
     game_board, game_col_conv, game_size = game_set_up()
     battleships_positions = battleships_def_pos(game_size, game_col_conv,game_board)    
