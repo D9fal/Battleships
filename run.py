@@ -339,7 +339,7 @@ def validate_battleships_positions_letter(nber_ships, column):
         letter_span = "ABCDEFGHIJKLMNOPQRST"
 
     try:
-        if letter_span.find(column) == -1:
+        if letter_span.find(column) == -1 or column == "":
             raise ValueError(f"{column} is not a letter between  {letter_span}")
 
     except ValueError as e:
@@ -538,5 +538,5 @@ def main():
     guessing_play(game_size,game_col_conv,game_board, battleships_positions)
     play_again()
 
-    
+
 main()
