@@ -29,11 +29,16 @@ player_d = player_data.get_all_values()
 
 
 def game_set_up():
+
     """
     starting the game,
     chosing the game size 5X5, 10X10 ou 20X20
     and the number of ships on the board
+
+    This function takes "1", "2", "3" as argument and returns
+    the layout of the game board (size, and rows and colums ranges)  
     """
+
     print("Wellcome to Fal Battleship ... \n")
     print("setting up the game ... \n")
     print("Please enter 1 for 5X5   game size \n")
@@ -47,19 +52,27 @@ def game_set_up():
         else:
             break
     board, row_conv = drawing_board(game_size)
+
     return (board, row_conv, game_size)
 
 
 def drawing_board(game_size):
+
     """
+    Once the game size is decided, this function 
+    returns the specifics of the layouts.
+
     the board is a list of list. where ' ' is an
     empty place or water and 'X' is a battleship.
-    """
-    """
-    The idea is to allow palyers to entre a combination
+    
+    The function is also called to convert the computer 
+    understanding of matrix position to the the player understanding.
+    for example:  
+    The idea is to allow palyers to enter a combination
     of letter and number to define a position on the board.
-    for example A1 will be row 1, and 2nd postion in the row.
+    for example A1 is the position (0,0) on the matrix.
     """
+
     board5 = [
         ['_', '_', '_', '_', '_'],
         ['_', '_', '_', '_', '_'],
@@ -177,6 +190,12 @@ def drawing_board(game_size):
 
 
 def advanced_settings(game_size):
+
+    """
+    The function uses game_size as argument and set 
+    the number of battleships allowed or required.  
+    """
+
     if game_size == "1":
         nber_ships = 5
         entries_col = "column (A to E for 5x5):"
@@ -204,6 +223,7 @@ def advanced_settings(game_size):
 
 
 def battleships_def_pos(game_size, game_col_conv, game_board):
+
     """
     the function will be used to determine if the battleship
     positions is chosing by a computer of the second players.
@@ -211,6 +231,7 @@ def battleships_def_pos(game_size, game_col_conv, game_board):
     if 2 players, players 1 will enter the positions of the
     battleships and the players 2 will have to play the game.
     """
+
     print("How to choose the battleships positions?")
     print("\n"*2)
     print("Please choose 1 if a friend should do it \n")
@@ -234,8 +255,12 @@ def battleships_def_pos(game_size, game_col_conv, game_board):
 
 
 def user_place_battleship(game_size, game_col_conv, game_board):
+
     """
+    The function allows the player to enter the hidden Battleships in the game board.
+    An error exception raise if the user enter the same position  more than one time.
     """
+
     nber_ships, entries_col, entries_row, cols_index,rs_index = advanced_settings(game_size)    
     row_number_list = []
     column_number_list = []
@@ -269,6 +294,7 @@ def user_place_battleship(game_size, game_col_conv, game_board):
 
 def computer_place_battleship(game_size, game_col_conv, game_board):
     """
+    THis function id called for automatic populated the game board with battleships.
     """
     nber_ships, entries_col, entries_row, cols_index, rs_index = advanced_settings(game_size)
     column_number_list = []
@@ -300,6 +326,11 @@ def computer_place_battleship(game_size, game_col_conv, game_board):
 
 
 def validate_battleships_positions_letter(nber_ships, column):
+
+    """
+    The function called an exception when the inputs letter is 
+    outside the allowed limites. 
+    """
     if nber_ships == 5:
         letter_span = "ABCDE"
     elif nber_ships == 10:
@@ -319,6 +350,9 @@ def validate_battleships_positions_letter(nber_ships, column):
 
 
 def validate_battleships_positions_number_0(nber_ships, row):
+    """
+    The function called an exeption when a value less than 1 is entered. 
+    """
     try:
         if (int(row) < 1):
             raise ValueError(f"{row} must be a number between 1 and {nber_ships}")
@@ -331,6 +365,11 @@ def validate_battleships_positions_number_0(nber_ships, row):
 
 
 def validate_battleships_positions_number(nber_ships, row):
+
+    """
+    The function called an exeption when an integer value
+     is entered outside the allowed range. 
+    """
     try:
         if (int(row) > int(nber_ships)):
             raise ValueError(f"{row} must be a number between 1 and {nber_ships}")
@@ -342,6 +381,12 @@ def validate_battleships_positions_number(nber_ships, row):
 
 
 def already_used_position(game_board, row_number, column_number):
+
+    """
+    The function is used to check is the same position is
+    entered more than once
+    """
+
     try:
         if game_board[row_number][column_number] == 'X':
             raise ValueError(f" there is a battleship already in that position")
@@ -353,6 +398,13 @@ def already_used_position(game_board, row_number, column_number):
 
 
 def validate_willing_to_play():
+
+    """
+    the function allow the game to wait untill the player 
+    enters "yes". 
+     The inputs are not case sensitive
+    """
+
     start_ok = input(" type Yes to start : ")
     try:
         if not (start_ok.upper() == "YES"):
@@ -364,6 +416,13 @@ def validate_willing_to_play():
 
 
 def record_ships_pos(number, letter):
+
+    """
+    THis is an intermadiate function,
+    used to build a list for the purpuse of 
+    recording the ships positions on google drive.
+    """
+
     data = []
     data_list_of_list = []
     for i in range(len(number)):
@@ -377,8 +436,11 @@ def record_ships_pos(number, letter):
 def guessing_play(game_size, game_col_conv, game_board, battleships_positions):
 
     """
-
+    The function is called when the player is ready to play. She or he has to follow 
+    the instructions. Enter for example A and 1 if he thinks there is a ship hidden on the 
+    position (0,0) etc..
     """
+
     nber_ships, entries_col, entries_row, cols_index, rs_index = advanced_settings(game_size)    
     nber_guess = 1 
     print("Are you ready to start guessing the Ships position?:")   
@@ -427,9 +489,15 @@ def guessing_play(game_size, game_col_conv, game_board, battleships_positions):
                     print("END od The Game!")
                 
         break
-        
+
+
 def clear_game_board(nber_ships,game_board,cols_index,rs_index):
-    
+
+    """
+    This function display an empty starting 
+    game borad
+    """
+
     for i in range(nber_ships):
         for j in range(nber_ships):
             if game_board[i][j] == "X":
@@ -440,7 +508,13 @@ def clear_game_board(nber_ships,game_board,cols_index,rs_index):
     print(df)
     return game_board
 
+
 def play_again():
+
+    """
+    Allow the player, et the end of the game to play again or 
+    log out of the game 
+    """
 
     print("press 'y' to play again or 'n' to end the game" )
     
@@ -456,10 +530,13 @@ def play_again():
         exit()
     else:
         pass
+
+
 def main():
     game_board, game_col_conv, game_size = game_set_up()
     battleships_positions = battleships_def_pos(game_size, game_col_conv,game_board)    
     guessing_play(game_size,game_col_conv,game_board, battleships_positions)
     play_again()
+
     
 main()
